@@ -1,19 +1,26 @@
 package com.example.demo.domain;
 
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity(name = "User")
 public class User {
 
-    @Id
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private  long id;
     private String name;
     private String lastname;
     private String birthday;
     private String mail;
     private String password;
+
+    @OneToMany
+    private List<Review> reviews;
+    @OneToMany
+    private List<Order> orders;
+    @OneToOne
+    private Basket basket;
 
     public long getId() {
         return id;
@@ -61,5 +68,29 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
+    public Basket getBasket() {
+        return basket;
+    }
+
+    public void setBasket(Basket basket) {
+        this.basket = basket;
     }
 }

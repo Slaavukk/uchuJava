@@ -1,16 +1,19 @@
 package com.example.demo.domain;
 
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Product {
-    @Id
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
     private String name;
     private byte number;
     private String salesman;
-    private String review;
+    @OneToOne
+    private Review review;
+
+
 
     public String getName() {
         return name;
@@ -36,11 +39,19 @@ public class Product {
         this.salesman = salesman;
     }
 
-    public String getReview() {
+    public Review getReview() {
         return review;
     }
 
-    public void setReview(String review) {
+    public void setReview(Review review) {
         this.review = review;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

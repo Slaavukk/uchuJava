@@ -1,37 +1,48 @@
 package com.example.demo.domain;
 
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Review {
-    @Id
-    private String productReview;
-    private String userReview;
-    private String reviewText;
 
-    public String getProductReview() {
-        return productReview;
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+    @OneToOne
+    private Product product;
+    @ManyToOne
+    private User user;
+    private String text;
+
+    public long getId() {
+        return id;
     }
 
-    public void setProductReview(String productReview) {
-        this.productReview = productReview;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public String getUserReview() {
-        return userReview;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setUserReview(String userReview) {
-        this.userReview = userReview;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
-    public String getReviewText() {
-        return reviewText;
+    public User getUser() {
+        return user;
     }
 
-    public void setReviewText(String reviewText) {
-        this.reviewText = reviewText;
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 }

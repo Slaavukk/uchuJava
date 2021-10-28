@@ -2,16 +2,23 @@ package com.example.demo.domain;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
+@Table(name = "basket")
 public class Basket {
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     @OneToOne
     private User user;
-    private String product; //Не уверен, но кажись должно быть private Product product но какая тогда связь
-    private int numberOfGoods;
-
+    @ManyToMany
+    @JoinTable(
+            name = "basket_product",
+            joinColumns = @JoinColumn(name = "basket_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id")
+    )
+    private List<Product> products;
 
     public long getId() {
         return id;
@@ -29,19 +36,11 @@ public class Basket {
         this.user = user;
     }
 
-    public String getProduct() {
-        return product;
+    public List<Product> getProducts() {
+        return products;
     }
 
-    public void setProduct(String product) {
-        this.product = product;
-    }
-
-    public int getNumberOfGoods() {
-        return numberOfGoods;
-    }
-
-    public void setNumberOfGoods(int numberOfGoods) {
-        this.numberOfGoods = numberOfGoods;
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 }

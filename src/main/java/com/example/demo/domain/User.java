@@ -4,11 +4,13 @@ package com.example.demo.domain;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity(name = "User")
+@Entity
+@Table(name = "users")
 public class User {
 
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    private  long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
     private String name;
     private String lastname;
     private String birthday;
@@ -93,4 +95,5 @@ public class User {
     public void setBasket(Basket basket) {
         this.basket = basket;
     }
+
 }

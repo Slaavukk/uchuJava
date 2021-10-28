@@ -1,32 +1,43 @@
 package com.example.demo.domain;
 
 
+import com.example.demo.domain.enums.OrderStatus;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
+@Table(name = "order")
 public class Order {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
-
-    private String product;         //Не уверен, но кажись должно быть private Product product но какая тогда связь
-    private int NumberOfGoods;
+    private long id;
+    @ManyToMany
+    @JoinTable(
+            name = "Order_product",
+            joinColumns = @JoinColumn(name = "order_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id")
+    )
+    private List<Product> products;
 
     @ManyToOne
     private User user;
+    @Enumerated(EnumType.STRING)
+    private OrderStatus orderStatus;
 
-    public String getProduct() {
-        return product;
+    public long getId() {
+        return id;
     }
 
-    public void setProduct(String product) {
-        this.product = product;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public int getNumberOfGoods() {
-        return NumberOfGoods;
+    public List<Product> getProducts() {
+        return products;
     }
 
-    public void setNumberOfGoods(int numberOfGoods) {
-        NumberOfGoods = numberOfGoods;
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
     public User getUser() {
@@ -35,5 +46,13 @@ public class Order {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public OrderStatus getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
     }
 }

@@ -4,11 +4,12 @@ package com.example.demo.domain;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "review")
 public class Review {
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    @OneToOne
+    @ManyToOne
     private Product product;
     @ManyToOne
     private User user;

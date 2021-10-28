@@ -2,17 +2,21 @@ package com.example.demo.domain;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
+@Table(name = "product")
 public class Product {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String name;
-    private byte number;
-    private String salesman;
-    @OneToOne
-    private Review review;
-
+    private int price;
+    private String picture; //urlllllllllllllllllllllllll
+    private int number;
+    @ManyToOne
+    private User salesman;
+    @OneToMany
+    private List<Review> reviews;
 
 
     public String getName() {
@@ -23,28 +27,36 @@ public class Product {
         this.name = name;
     }
 
-    public byte getNumber() {
+    public int getNumber() {
         return number;
     }
 
-    public void setNumber(byte number) {
+    public void setNumber(int number) {
         this.number = number;
     }
 
-    public String getSalesman() {
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public User getSalesman() {
         return salesman;
     }
 
-    public void setSalesman(String salesman) {
+    public void setSalesman(User salesman) {
         this.salesman = salesman;
     }
 
-    public Review getReview() {
-        return review;
+    public List<Review> getReviews() {
+        return reviews;
     }
 
-    public void setReview(Review review) {
-        this.review = review;
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
     }
 
     public long getId() {

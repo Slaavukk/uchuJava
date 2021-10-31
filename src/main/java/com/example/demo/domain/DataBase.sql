@@ -11,18 +11,18 @@ CREATE DATABASE shop;
     (3, 'CLOSED');
 
     CREATE TABLE role (
-    role_id INT,
+    id INT,
     role VARCHAR(20) NOT NULL UNIQUE,
-    PRIMARY KEY (role_id)
+    PRIMARY KEY (id)
     );
-    INSERT INTO role (role_id, role)
+    INSERT INTO role (id, role)
     values
     (1, 'ADMIN'),
     (2, 'CUSTOMER'),
     (3, 'SALESMAN');
 
     CREATE TABLE user (
-    user_id INT NOT NULL GENERATED ALWAYS AS IDENTITY,
+    id INT NOT NULL GENERATED ALWAYS AS IDENTITY,
     name VARCHAR(30),
     lastname VARCHAR(30),
     birthday DATE,
@@ -30,43 +30,43 @@ CREATE DATABASE shop;
     password VARCHAR(32),
     role INT NOT NULL DEFAULT 1,
     status INT NOT NULL DEFAULT 1,
-    CONSTRAINT fk_user_role FOREIGN KEY (role) REFERENCES role (role_id),
+    CONSTRAINT fk_user_role FOREIGN KEY (role) REFERENCES role (id),
     CONSTRAINT fk_user_orderStatus FOREIGN KEY (status) REFERENCES orderStatus(status_id),
-    PRIMARY KEY(user_id)
+    PRIMARY KEY(id)
     );
     CREATE TABLE product (
-    product_id INT NOT NULL GENERATED ALWAYS AS IDENTITY,
+    id INT NOT NULL GENERATED ALWAYS AS IDENTITY,
     name VARCHAR(40),
     price INT,
     number INT,
-    PRIMARY KEY (product_id)
+    PRIMARY KEY (id)
     );
     CREATE TABLE reviews (
-    review_id INT NOT NULL GENERATED ALWAYS AS IDENTITY,
+    id INT NOT NULL GENERATED ALWAYS AS IDENTITY,
     text TEXT,
-    product_id INT REFERENCES product (product_id),
-    user_id INT REFERENCES user (user_id),
-    PRIMARY KEY (review_id)
+    product_id INT REFERENCES product (id),
+    user_id INT REFERENCES user (id),
+    PRIMARY KEY (id)
     );
     CREATE TABLE order (
-    order_id INT NOT NULL GENERATED ALWAYS AS IDENTITY,
-    user_id INT REFERENCES user (user_id),
-    PRIMARY KEY (order_id)
+    id INT NOT NULL GENERATED ALWAYS AS IDENTITY,
+    user_id INT REFERENCES user (id),
+    PRIMARY KEY (id)
     );
     CREATE TABLE basket (
-    basket_id INT NOT NULL GENERATED ALWAYS AS IDENTITY,
-    user_id INT UNIQUE REFERENCES user (user_id),
-    PRIMARY KEY (basket_id)
+    id INT NOT NULL GENERATED ALWAYS AS IDENTITY,
+    user_id INT UNIQUE REFERENCES user (id),
+    PRIMARY KEY (id)
     );
 
     CREATE TABLE order_product (
-    order_id INT REFERENCES order (order_id),
-    product_id INT REFERENCES product (product_id),
+    order_id INT REFERENCES order (id),
+    product_id INT REFERENCES product (id),
     PRIMARY KEY (order_id, product_id)
     );
     CREATE TABLE basket_product (
-    basket_id INT REFERENCES basket (basket_id),
-    product_id INT REFERENCES product (product_id),
+    basket_id INT REFERENCES basket (id),
+    product_id INT REFERENCES product (id),
     PRIMARY KEY (basket_id, product_id)
     );
 

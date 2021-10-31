@@ -21,7 +21,7 @@ CREATE DATABASE shop;
     (2, 'CUSTOMER'),
     (3, 'SALESMAN');
 
-    CREATE TABLE user (
+    CREATE TABLE users (
     id INT NOT NULL GENERATED ALWAYS AS IDENTITY,
     name VARCHAR(30),
     lastname VARCHAR(30),
@@ -45,22 +45,22 @@ CREATE DATABASE shop;
     id INT NOT NULL GENERATED ALWAYS AS IDENTITY,
     text TEXT,
     product_id INT REFERENCES product (id),
-    user_id INT REFERENCES user (id),
+    user_id INT REFERENCES users (id),
     PRIMARY KEY (id)
     );
-    CREATE TABLE order (
+    CREATE TABLE orders (
     id INT NOT NULL GENERATED ALWAYS AS IDENTITY,
-    user_id INT REFERENCES user (id),
+    user_id INT REFERENCES users (id),
     PRIMARY KEY (id)
     );
     CREATE TABLE basket (
     id INT NOT NULL GENERATED ALWAYS AS IDENTITY,
-    user_id INT UNIQUE REFERENCES user (id),
+    user_id INT UNIQUE REFERENCES users (id),
     PRIMARY KEY (id)
     );
 
     CREATE TABLE order_product (
-    order_id INT REFERENCES order (id),
+    order_id INT REFERENCES orders (id),
     product_id INT REFERENCES product (id),
     PRIMARY KEY (order_id, product_id)
     );

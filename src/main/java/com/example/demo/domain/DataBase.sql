@@ -1,10 +1,10 @@
 CREATE DATABASE shop;
     CREATE TABLE orderStatus (
-    status_id INT,
+    id INT,
     status VARCHAR(20) NOT NULL UNIQUE,
-    PRIMARY KEY (status_id)
+    PRIMARY KEY (id)
     );
-    INSERT INTO orderStatus (status_id, status)
+    INSERT INTO orderStatus (id, status)
     values
     (1, 'CREATED'),
     (2, 'DELIVERY'),
@@ -12,10 +12,10 @@ CREATE DATABASE shop;
 
     CREATE TABLE role (
     id INT,
-    role VARCHAR(20) NOT NULL UNIQUE,
+    roles VARCHAR(20) NOT NULL UNIQUE,
     PRIMARY KEY (id)
     );
-    INSERT INTO role (id, role)
+    INSERT INTO role (id, roles)
     values
     (1, 'ADMIN'),
     (2, 'CUSTOMER'),
@@ -31,7 +31,7 @@ CREATE DATABASE shop;
     role INT NOT NULL DEFAULT 1,
     status INT NOT NULL DEFAULT 1,
     CONSTRAINT fk_user_role FOREIGN KEY (role) REFERENCES role (id),
-    CONSTRAINT fk_user_orderStatus FOREIGN KEY (status) REFERENCES orderStatus(status_id),
+    CONSTRAINT fk_user_orderStatus FOREIGN KEY (status) REFERENCES orderStatus(id),
     PRIMARY KEY(id)
     );
     CREATE TABLE product (

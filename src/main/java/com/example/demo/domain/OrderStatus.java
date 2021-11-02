@@ -1,16 +1,16 @@
 package com.example.demo.domain;
 
-import com.example.demo.domain.enums.OrderStatus;
+import com.example.demo.domain.enums.OrderStatusEnum;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "orderStatus")
-public class OrderStatuss {
+public class OrderStatus {
     @Id
     private long id;
     @Enumerated(EnumType.STRING)
-    private OrderStatus orderStatus;
+    private OrderStatusEnum orderStatus;
 
     public long getId() {
         return id;
@@ -20,11 +20,11 @@ public class OrderStatuss {
         this.id = id;
     }
 
-    public OrderStatus getOrderStatus() {
+    public OrderStatusEnum getOrderStatus() {
         return orderStatus;
     }
 
-    public void setOrderStatus(OrderStatus orderStatus) {
+    public void setOrderStatus(OrderStatusEnum orderStatus) {
         this.orderStatus = orderStatus;
     }
 }

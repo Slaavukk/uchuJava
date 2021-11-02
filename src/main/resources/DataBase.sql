@@ -29,9 +29,7 @@ CREATE DATABASE shop;
     mail VARCHAR(40),
     password VARCHAR(32),
     role INT NOT NULL DEFAULT 1,
-    status INT NOT NULL DEFAULT 1,
     CONSTRAINT fk_user_role FOREIGN KEY (role) REFERENCES role (id),
-    CONSTRAINT fk_user_orderStatus FOREIGN KEY (status) REFERENCES orderStatus(id),
     PRIMARY KEY(id)
     );
     CREATE TABLE product (
@@ -50,6 +48,8 @@ CREATE DATABASE shop;
     );
     CREATE TABLE orders (
     id INT NOT NULL GENERATED ALWAYS AS IDENTITY,
+    status INT NOT NULL DEFAULT 1,
+    CONSTRAINT fk_user_orderStatus FOREIGN KEY (status) REFERENCES orderStatus(id),
     user_id INT REFERENCES users (id),
     PRIMARY KEY (id)
     );
@@ -69,4 +69,8 @@ CREATE DATABASE shop;
     product_id INT REFERENCES product (id),
     PRIMARY KEY (basket_id, product_id)
     );
+    CREATE TABLE users_role (
+    users_id INT REFERENCES users(id),
+    role_id INT REFERENCES role(id)
+    )
 

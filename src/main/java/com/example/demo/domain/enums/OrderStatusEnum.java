@@ -1,6 +1,6 @@
 package com.example.demo.domain.enums;
 
-public enum OrderStatus {
+public enum OrderStatusEnum {
 
     CREATED,
     DELIVERY,

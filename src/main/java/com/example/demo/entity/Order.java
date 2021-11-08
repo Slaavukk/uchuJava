@@ -7,7 +7,7 @@ import java.util.List;
 @Entity
 @Table(name = "order")
 public class Order {
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @ManyToMany
     @JoinTable(

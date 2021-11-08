@@ -1,8 +1,6 @@
 package com.example.demo.domain;
 
 
-import com.example.demo.domain.enums.OrderStatus;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -21,7 +19,7 @@ public class Order {
 
     @ManyToOne
     private User user;
-    @Enumerated(EnumType.STRING)
+    @ManyToOne
     private OrderStatus orderStatus;
 
     public long getId() {

@@ -20,10 +20,10 @@ public class AuthController {
 
     @PostMapping("/register")
     public String registerUser(@RequestBody @Valid RegistrationRequest registrationRequest) {
-        User u = new User();
-        u.setPassword(registrationRequest.getPassword());
-        u.setMail(registrationRequest.getLogin());
-        userService.saveUser(u);
+        User usr = new User();
+        usr.setPassword(registrationRequest.getPassword());
+        usr.setMail(registrationRequest.getLogin());
+        userService.saveUser(usr);
         return "OK";
     }
 

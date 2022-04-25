@@ -1,7 +1,8 @@
-package com.example.demo.domain;
+package com.example.demo.entity;
 
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -9,17 +10,17 @@ import java.util.List;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
     private String lastname;
-    private String birthday;
+    private Date birthday;
     private String mail;
     private String password;
     @ManyToMany
     @JoinTable(
-            name = "user_role",
-            joinColumns = @JoinColumn(name = "user_id"),
+            name = "users_role",
+            joinColumns = @JoinColumn(name = "users_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private List<Role> roles;
@@ -28,7 +29,7 @@ public class User {
     private List<Review> reviews;
     @OneToMany
     private List<Order> orders;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Basket basket;
 
     public long getId() {
@@ -55,11 +56,11 @@ public class User {
         this.lastname = lastname;
     }
 
-    public String getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(String birthday) {
+    public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
 

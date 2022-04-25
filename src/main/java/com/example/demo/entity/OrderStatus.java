@@ -1,6 +1,6 @@
-package com.example.demo.domain;
+package com.example.demo.entity;
 
-import com.example.demo.domain.enums.OrderStatusEnum;
+import com.example.demo.entity.enums.OrderStatusEnum;
 
 import javax.persistence.*;
 

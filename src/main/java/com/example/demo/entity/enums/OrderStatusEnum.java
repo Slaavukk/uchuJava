@@ -1,4 +1,4 @@
-package com.example.demo.domain.enums;
+package com.example.demo.entity.enums;
 
 public enum OrderStatusEnum {
 

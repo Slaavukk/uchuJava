@@ -1,4 +1,4 @@
-package com.example.demo.domain;
+package com.example.demo.entity;
 
 
 import javax.persistence.*;
@@ -8,7 +8,7 @@ import java.util.List;
 @Table(name = "basket")
 public class Basket {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @OneToOne
     private User user;

@@ -1,4 +1,4 @@
-package com.example.demo.domain;
+package com.example.demo.entity;
 
 
 import javax.persistence.*;
@@ -7,7 +7,7 @@ import java.util.List;
 @Entity
 @Table(name = "product")
 public class Product {
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
     private int price;

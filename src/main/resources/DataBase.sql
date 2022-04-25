@@ -29,6 +29,7 @@ CREATE DATABASE shop;
     mail VARCHAR(40),
     password VARCHAR(32),
     role INT NOT NULL DEFAULT 1,
+    basket_id INT NOT NULL DEFAULT 1,
     CONSTRAINT fk_user_role FOREIGN KEY (role) REFERENCES role (id),
     PRIMARY KEY(id)
     );
